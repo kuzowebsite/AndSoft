@@ -1,0 +1,172 @@
+/* src/components/TerminalContact.module.css */
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+.container {
+  background-color: #050505;
+  min-height: 100vh;
+  width: 100%;
+  font-family: 'VT323', monospace; /* Pixelated font */
+  color: #0f0;
+  display: flex;
+  overflow: hidden;
+  position: relative;
+}
+
+/* CRT Screen Effects (Хуучин дэлгэцний эффект) */
+.crtWrapper {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+}
+
+.crtWrapper::before {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+  z-index: 10;
+  background-size: 100% 2px, 3px 100%;
+  pointer-events: none;
+}
+
+.crtWrapper::after {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(18, 16, 16, 0.1);
+  opacity: 0;
+  z-index: 10;
+  pointer-events: none;
+  animation: flicker 0.15s infinite;
+}
+
+@keyframes flicker {
+  0% { opacity: 0.02; }
+  50% { opacity: 0.05; }
+  100% { opacity: 0.02; }
+}
+
+/* Sidebar */
+.sidebar {
+  width: 300px;
+  border-right: 2px solid #0f0;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  background: rgba(0, 20, 0, 0.9);
+  box-shadow: 0 0 20px rgba(0, 255, 0, 0.2);
+  z-index: 20;
+}
+
+.sidebarTitle {
+  font-size: 1.8rem;
+  border-bottom: 1px dashed #0f0;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+  text-shadow: 0 0 10px #0f0;
+}
+
+.instructionItem {
+  margin-bottom: 15px;
+  font-size: 1.2rem;
+  opacity: 0.8;
+}
+
+.commandHighlight {
+  background: #0f0;
+  color: #000;
+  padding: 0 5px;
+  font-weight: bold;
+}
+
+/* Main Terminal Area */
+.terminalArea {
+  flex: 1;
+  padding: 40px;
+  overflow-y: auto;
+  position: relative;
+  z-index: 1;
+}
+
+.prompt {
+  font-size: 1.4rem;
+  line-height: 1.6;
+  text-shadow: 0 0 5px rgba(0, 255, 0, 0.6);
+  margin-bottom: 10px;
+  white-space: pre-wrap;
+}
+
+.userLine {
+  color: #fff;
+  text-shadow: 0 0 5px #fff;
+}
+
+.inputLine {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.cursor {
+  display: inline-block;
+  width: 12px;
+  height: 24px;
+  background-color: #0f0;
+  margin-left: 5px;
+  animation: blink 1s step-end infinite;
+  box-shadow: 0 0 10px #0f0;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.hiddenInput {
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  left: 0;
+}
+
+/* Success Overlay */
+.successOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.95);
+  z-index: 50;
+  backdrop-filter: blur(5px);
+}
+
+.successText {
+  font-size: 5rem;
+  font-weight: bold;
+  color: #0f0;
+  text-transform: uppercase;
+  text-shadow: 0 0 20px #0f0, 0 0 40px #0f0;
+  text-align: center;
+  border: 4px solid #0f0;
+  padding: 20px 40px;
+  background: rgba(0, 20, 0, 0.8);
+}
+
+.successText {
+  display: inline-block;
+  text-shadow: 0 0 10px #0f0, 0 0 20px #0f0; /* Гэрэлтэх эффект */
+}
