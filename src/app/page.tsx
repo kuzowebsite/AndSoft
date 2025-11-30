@@ -18,7 +18,7 @@ import {
   Apple, User, Briefcase, Mail, Layers, LucideIcon, 
   Gamepad2, Terminal as TerminalIcon, X, Minus, Maximize2, Globe, FolderGit2,
   Snowflake, Gift, Trees, Code2, Coffee, Atom, FileCode2, Hash, Braces, 
-  Wind, Cpu, Database, Command, Sparkles, Clock, Send,
+  Wind, Cpu, Database, Command, Sparkles, Clock,
   Download, Search, Calendar, Server, Rocket, Palette, LineChart, ExternalLink,
   Cloud, TerminalSquare, Layout
 } from 'lucide-react';
@@ -38,6 +38,17 @@ const PARTNERS = [
   { id: 4, name: "Huchtn LLC", logo: "https://images.unsplash.com/photo-1568952433726-3896e3881c65?w=300&h=300&fit=crop", url: "#" },
 ];
 
+const TECH_STACK = [
+    { name: "React", icon: Atom },
+    { name: "Next.js", icon: Wind },
+    { name: "TypeScript", icon: FileCode2 },
+    { name: "Node.js", icon: Server },
+    { name: "Python", icon: Code2 },
+    { name: "PostgreSQL", icon: Database },
+    { name: "AWS", icon: Cloud },
+    { name: "Tailwind", icon: Palette },
+];
+
 // --- Types ---
 type MenuItemType = {
   label: string;
@@ -54,6 +65,7 @@ const AboutContent = ({ language }: { language: 'mn' | 'en' }) => {
       historyText: "AndSoft LLC нь 2023 онд технологийн салбарт шинэлэг шийдэл нэвтрүүлэх зорилготойгоор анх үйл ажиллагаагаа эхлүүлсэн. 2025 онд Монгол Улсын хуулийн дагуу албан ёсны бүртгэлтэй компани болон өргөжиж, харилцагчиддаа илүү найдвартай үйлчилгээг үзүүлж байна.",
       leadersTitle: "Удирдлага",
       teamTitle: "Манай баг",
+      techTitle: "Технологийн Чадамж",
       partnersTitle: "Хамтрагч байгууллагууд",
       roleCEO: "Гүйцтгэх захирал",
       roleDeputy: "Дэд захирал",
@@ -65,6 +77,7 @@ const AboutContent = ({ language }: { language: 'mn' | 'en' }) => {
       historyText: "AndSoft LLC started in 2023 with a mission to bring innovative tech solutions. In 2025, we became an officially registered company in Mongolia, expanding our services to deliver reliability and quality.",
       leadersTitle: "Leadership",
       teamTitle: "Our Team",
+      techTitle: "Tech Capabilities",
       partnersTitle: "Partners",
       roleCEO: "CEO",
       roleDeputy: "Deputy Director",
@@ -112,6 +125,7 @@ const AboutContent = ({ language }: { language: 'mn' | 'en' }) => {
 
         <div className="p-6 md:p-10 max-w-5xl mx-auto space-y-16">
 
+          {/* History Section */}
           <section className="glass-card p-8 rounded-2xl relative overflow-hidden group">
             <div className="absolute top-0 left-0 w-1 h-full bg-blue-600/50 group-hover:bg-blue-500 transition-colors" />
             <div className="flex items-center gap-3 mb-4">
@@ -123,6 +137,7 @@ const AboutContent = ({ language }: { language: 'mn' | 'en' }) => {
             </p>
           </section>
 
+          {/* Leadership Section */}
           <section>
             <div className="flex items-center gap-3 mb-8">
                 <Briefcase className="text-cyan-500" size={24} />
@@ -152,6 +167,23 @@ const AboutContent = ({ language }: { language: 'mn' | 'en' }) => {
             </div>
           </section>
 
+          {/* Tech Stack Section (Integrated Cleanly) */}
+          <section>
+            <div className="flex items-center gap-3 mb-8">
+                <Cpu className="text-orange-500" size={24} />
+                <h2 className="text-xl font-bold text-white">{content.techTitle}</h2>
+            </div>
+            <div className="glass-card p-6 rounded-2xl grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+                {TECH_STACK.map((tech, idx) => (
+                    <div key={idx} className="flex flex-col items-center justify-center p-4 bg-white/5 rounded-xl hover:bg-white/10 hover:scale-105 transition-all cursor-default group">
+                        <tech.icon className="text-gray-400 group-hover:text-white transition-colors mb-2" size={24} />
+                        <span className="text-sm font-medium text-gray-300 group-hover:text-white">{tech.name}</span>
+                    </div>
+                ))}
+            </div>
+          </section>
+
+          {/* Team Section */}
           <section>
             <div className="flex items-center gap-3 mb-8">
                 <Code2 className="text-purple-500" size={24} />
@@ -178,6 +210,7 @@ const AboutContent = ({ language }: { language: 'mn' | 'en' }) => {
             </div>
           </section>
 
+          {/* Partners Section */}
           <section className="pb-10">
             <div className="flex items-center gap-3 mb-8">
                 <LineChart className="text-green-500" size={24} />
@@ -210,86 +243,6 @@ const AboutContent = ({ language }: { language: 'mn' | 'en' }) => {
       </div>
     </>
   );
-};
-
-// --- COMPONENT: Tech Stack Window Content (Categorized) ---
-const TechStackContent = ({ language }: { language: 'mn' | 'en' }) => {
-    // Categorized Techs
-    const categories = {
-        frontend: {
-            title: language === 'mn' ? 'Frontend & Frameworks' : 'Frontend & Frameworks',
-            items: [
-                { name: "React", icon: <Atom />, level: "Expert" },
-                { name: "Next.js", icon: <Wind />, level: "Expert" },
-                { name: "Tailwind", icon: <Palette />, level: "Expert" },
-                { name: "Flutter", icon: <Layout />, level: "Intermediate" },
-                { name: "Figma", icon: <Palette />, level: "Advanced" },
-            ]
-        },
-        backend: {
-            title: language === 'mn' ? 'Backend & Languages' : 'Backend & Languages',
-            items: [
-                { name: "Node.js", icon: <Server />, level: "Advanced" },
-                { name: "TypeScript", icon: <FileCode2 />, level: "Advanced" },
-                { name: "Python", icon: <Code2 />, level: "Intermediate" },
-                { name: "Go", icon: <Code2 />, level: "Basic" },
-                { name: "Rust", icon: <Code2 />, level: "Basic" },
-            ]
-        },
-        database: {
-            title: language === 'mn' ? 'Database & Cloud' : 'Database & Cloud',
-            items: [
-                { name: "PostgreSQL", icon: <Database />, level: "Advanced" },
-                { name: "AWS", icon: <Cloud />, level: "Advanced" },
-                { name: "Firebase", icon: <Database />, level: "Expert" },
-                { name: "MongoDB", icon: <Database />, level: "Advanced" },
-                { name: "Redis", icon: <Database />, level: "Intermediate" },
-                { name: "GraphQL", icon: <Database />, level: "Intermediate" },
-            ]
-        },
-        devops: {
-            title: language === 'mn' ? 'DevOps & Tools' : 'DevOps & Tools',
-            items: [
-                { name: "Docker", icon: <Server />, level: "Intermediate" },
-                { name: "Git", icon: <Code2 />, level: "Expert" },
-                { name: "Linux", icon: <TerminalIcon />, level: "Advanced" },
-                { name: "Nginx", icon: <Server />, level: "Intermediate" },
-            ]
-        }
-    };
-
-    return (
-        <div className="p-6 bg-[#0f172a] text-white h-full overflow-y-auto mac-scrollbar">
-            <h2 className="text-2xl font-bold mb-6 text-blue-400 border-b border-white/10 pb-2">
-                {language === 'mn' ? 'Технологийн Стек' : 'Tech Stack'}
-            </h2>
-            
-            <div className="space-y-8">
-                {Object.entries(categories).map(([key, category]) => (
-                    <div key={key}>
-                        <h3 className="text-sm font-bold text-gray-400 uppercase tracking-wider mb-3 pl-1">{category.title}</h3>
-                        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
-                            {category.items.map((tech, idx) => (
-                                <div key={idx} className="bg-white/5 border border-white/10 p-3 rounded-xl flex flex-col items-center gap-2 hover:bg-white/10 hover:border-blue-500/50 transition-all group cursor-default">
-                                    <div className="text-blue-400 group-hover:scale-110 transition-transform mb-1">
-                                        {tech.icon}
-                                    </div>
-                                    <span className="font-bold text-sm text-center">{tech.name}</span>
-                                    <span className={`text-[10px] uppercase tracking-wide px-2 py-0.5 rounded ${
-                                        tech.level === 'Expert' ? 'bg-green-500/20 text-green-300' :
-                                        tech.level === 'Advanced' ? 'bg-blue-500/20 text-blue-300' :
-                                        'bg-gray-500/20 text-gray-300'
-                                    }`}>
-                                        {tech.level}
-                                    </span>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                ))}
-            </div>
-        </div>
-    );
 };
 
 // --- COMPONENT: Meeting Schedule Content ---
@@ -454,8 +407,8 @@ const Snowman = () => {
 
 // --- COMPONENT: Typing Easter Egg ---
 const TypingEasterEgg = () => {
-    const [text, setText] = useState(""); 
-    const fullText = "console.log('Merry Christmas!'); // AndSoft LLC";
+    const [text, setText] = useState("");
+    const fullText = "console.log('Merry Christmas!'); // AndSoft";
     useEffect(() => {
         let idx = 0;
         const interval = setInterval(() => { setText(fullText.slice(0, idx)); idx++; if (idx > fullText.length) { setTimeout(() => { idx = 0; }, 3000); } }, 150);
@@ -486,7 +439,7 @@ const MouseTrail = () => {
 };
 
 // --- COMPONENT: Secret Terminal ---
-const SecretTerminal = ({ onClose, onToggleSnow, isSnowOn, language, onOpenCard, onOpenTech, onOpenMeeting }: { onClose: () => void, onToggleSnow: (val: boolean) => void, isSnowOn: boolean, language: 'mn' | 'en', onOpenCard: () => void, onOpenTech: () => void, onOpenMeeting: () => void }) => {
+const SecretTerminal = ({ onClose, onToggleSnow, isSnowOn, language, onOpenCard, onOpenMeeting }: { onClose: () => void, onToggleSnow: (val: boolean) => void, isSnowOn: boolean, language: 'mn' | 'en', onOpenCard: () => void, onOpenMeeting: () => void }) => {
     const [input, setInput] = useState("");
     const [history, setHistory] = useState<string[]>([]);
     const inputRef = useRef<HTMLInputElement>(null);
@@ -499,12 +452,11 @@ const SecretTerminal = ({ onClose, onToggleSnow, isSnowOn, language, onOpenCard,
         if (e.key === 'Enter') {
             const cmd = input.trim().toLowerCase();
             const newHistory = [...history, `> ${input}`];
-            if (cmd === 'help' || cmd === 'тусламж') newHistory.push("Commands: help, clear, snow on/off, card, tech, meeting, about, exit");
+            if (cmd === 'help' || cmd === 'тусламж') newHistory.push("Commands: help, clear, snow on/off, card, meeting, about, exit");
             else if (cmd === 'clear' || cmd === 'цэвэрлэх') { setHistory([]); setInput(""); return; }
             else if (cmd === 'snow off') { onToggleSnow(false); newHistory.push("Snow disabled."); }
             else if (cmd === 'snow on') { onToggleSnow(true); newHistory.push("Snow enabled."); }
             else if (cmd === 'card') { onOpenCard(); newHistory.push("Opening card generator..."); }
-            else if (cmd === 'tech') { onOpenTech(); newHistory.push("Opening tech stack..."); }
             else if (cmd === 'meeting') { onOpenMeeting(); newHistory.push("Opening meeting schedule..."); }
             else if (cmd === 'about') newHistory.push("AndSoft LLC - Building Future Systems.");
             else if (cmd === 'exit') onClose();
@@ -957,8 +909,6 @@ export default function Home() {
   const [isHelpMinimized, setIsHelpMinimized] = useState(false);
 
   // New Windows
-  const [isTechOpen, setIsTechOpen] = useState(false);
-  const [isTechMinimized, setIsTechMinimized] = useState(false);
   const [isMeetingOpen, setIsMeetingOpen] = useState(false);
   const [isMeetingMinimized, setIsMeetingMinimized] = useState(false);
 
@@ -980,7 +930,6 @@ export default function Home() {
   const toggleProjects = () => { setActiveWindow('projects'); if (!isProjectsOpen) { setIsProjectsOpen(true); setIsProjectsMinimized(false); } else { isProjectsMinimized ? setIsProjectsMinimized(false) : setIsProjectsMinimized(true); } };
   const toggleHelp = () => { setActiveWindow('help'); if (!isHelpOpen) { setIsHelpOpen(true); setIsHelpMinimized(false); } else { isHelpMinimized ? setIsHelpMinimized(false) : setIsHelpMinimized(true); } };
   
-  const toggleTech = () => { setActiveWindow('tech'); if (!isTechOpen) { setIsTechOpen(true); setIsTechMinimized(false); } else { isTechMinimized ? setIsTechMinimized(false) : setIsTechMinimized(true); } };
   const toggleMeeting = () => { setActiveWindow('meeting'); if (!isMeetingOpen) { setIsMeetingOpen(true); setIsMeetingMinimized(false); } else { isMeetingMinimized ? setIsMeetingMinimized(false) : setIsMeetingMinimized(true); } };
 
   // Toggle Card Generator Window
@@ -995,7 +944,7 @@ export default function Home() {
   const handleCloseAllWindows = () => {
       setIsContactOpen(false); setIsAboutOpen(false); setIsCareersOpen(false); setIsGamesOpen(false);
       setIsServicesOpen(false); setIsProjectsOpen(false); setIsHelpOpen(false); setIsCardGenOpen(false);
-      setIsTechOpen(false); setIsMeetingOpen(false);
+      setIsMeetingOpen(false);
   };
   const handleShutDown = () => setIsShutDown(true);
 
@@ -1049,7 +998,7 @@ export default function Home() {
           isSnowOn={showSnow} 
           language={language} 
           onOpenCard={toggleCardGen}
-          onOpenTech={toggleTech}
+          onOpenTech={() => {}} // Removed as tech stack is now in about
           onOpenMeeting={toggleMeeting}
       />}
       
@@ -1090,8 +1039,8 @@ export default function Home() {
         </motion.div>
         
         {/* Adjusted Tree Size */}
-        <div className="relative z-20 scale-75 md:scale-70 -mt-22 md:-mt-32 mb-12">
-            <CodeChristmasTree onOpenWish={() => {}} />
+        <div className="relative z-20 scale-75 md:scale-90 -mt-22 md:-mt-32 mb-12">
+            <CodeChristmasTree />
         </div>
       </div>
 
@@ -1109,9 +1058,6 @@ export default function Home() {
         
         {/* Card Generator */}
         {isCardGenOpen && <MacWindow title={language === 'mn' ? "Карт Үүсгэгч" : "Card Generator"} isOpen={isCardGenOpen} isMinimized={isCardGenMinimized} isActive={activeWindow === 'card'} onFocus={() => setActiveWindow('card')} onClose={() => setIsCardGenOpen(false)} onMinimize={() => setIsCardGenMinimized(true)}><GreetingCardGeneratorContent language={language} /></MacWindow>}
-        
-        {/* Tech Stack Window */}
-        {isTechOpen && <MacWindow title={language === 'mn' ? "Технологи" : "Tech Stack"} isOpen={isTechOpen} isMinimized={isTechMinimized} isActive={activeWindow === 'tech'} onFocus={() => setActiveWindow('tech')} onClose={() => setIsTechOpen(false)} onMinimize={() => setIsTechMinimized(true)}><TechStackContent language={language} /></MacWindow>}
         
         {/* Meeting Window */}
         {isMeetingOpen && <MacWindow title={language === 'mn' ? "Уулзалт" : "Meeting"} isOpen={isMeetingOpen} isMinimized={isMeetingMinimized} isActive={activeWindow === 'meeting'} onFocus={() => setActiveWindow('meeting')} onClose={() => setIsMeetingOpen(false)} onMinimize={() => setIsMeetingMinimized(true)}><MeetingContent language={language} /></MacWindow>}
