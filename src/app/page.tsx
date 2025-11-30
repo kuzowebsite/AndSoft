@@ -735,16 +735,16 @@ const TopBar = ({
                     </div>
                 ))}
             </div>
-            <div className="flex items-center gap-1 md:gap-2">
+            <div className="flex items-center gap-1">
                 <NewYearCountdown language={language} />
-                <div className="flex items-center gap-1 md:gap-2 cursor-pointer hover:bg-white/10 px-2 py-1 rounded transition-colors" onClick={() => setLanguage(language === 'mn' ? 'en' : 'mn')}>
+                <div className="flex items-center gap-1 cursor-pointer hover:bg-white/10 px-2 py-1 rounded transition-colors" onClick={() => setLanguage(language === 'mn' ? 'en' : 'mn')}>
                     <Globe size={12} className="text-gray-400" />
                     <span className="uppercase font-bold text-gray-300 text-[10px] md:text-xs">{language}</span>
                 </div>
-                <div className="hidden md:flex items-center gap-3">
+                <div className="hidden md:flex items-center gap-3 ml-2">
                     <Search size={14} className="text-gray-500" />
                 </div>
-                <span className="text-gray-200 hidden md:block">{time}</span>
+                <span className="text-gray-200 hidden md:block ml-2">{time}</span>
             </div>
         </div>
     </div>
@@ -998,7 +998,6 @@ export default function Home() {
           isSnowOn={showSnow} 
           language={language} 
           onOpenCard={toggleCardGen}
-          onOpenTech={() => {}} 
           onOpenMeeting={toggleMeeting}
       />}
       
