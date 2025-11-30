@@ -18,7 +18,7 @@ import {
   Apple, User, Briefcase, Mail, Layers, LucideIcon, 
   Gamepad2, Terminal as TerminalIcon, X, Minus, Maximize2, Globe, FolderGit2,
   Snowflake, Gift, Trees, Code2, Coffee, Atom, FileCode2, Hash, Braces, 
-  Wind, Cpu, Database, Command, Sparkles, Clock,
+  Wind, Cpu, Database, Command, Sparkles, Clock, Send,
   Download, Search, Calendar, Server, Rocket, Palette, LineChart, ExternalLink,
   Cloud, TerminalSquare, Layout
 } from 'lucide-react';
@@ -735,7 +735,7 @@ const TopBar = ({
                     </div>
                 ))}
             </div>
-            <div className="flex items-center gap-2 md:gap-3">
+            <div className="flex items-center gap-1 md:gap-2">
                 <NewYearCountdown language={language} />
                 <div className="flex items-center gap-1 md:gap-2 cursor-pointer hover:bg-white/10 px-2 py-1 rounded transition-colors" onClick={() => setLanguage(language === 'mn' ? 'en' : 'mn')}>
                     <Globe size={12} className="text-gray-400" />
@@ -998,7 +998,7 @@ export default function Home() {
           isSnowOn={showSnow} 
           language={language} 
           onOpenCard={toggleCardGen}
-          onOpenTech={() => {}} // Removed as tech stack is now in about
+          onOpenTech={() => {}} 
           onOpenMeeting={toggleMeeting}
       />}
       
@@ -1038,7 +1038,7 @@ export default function Home() {
           </div>
         </motion.div>
         
-        {/* Adjusted Tree Size */}
+        {/* Adjusted Tree Size: Small on mobile, normal on PC */}
         <div className="relative z-20 scale-75 md:scale-90 -mt-22 md:-mt-32 mb-12">
             <CodeChristmasTree />
         </div>
@@ -1047,7 +1047,7 @@ export default function Home() {
       <AnimatePresence>
         {isContactOpen && <MacWindow title={language === 'mn' ? "Холбоо барих" : "Contact Us"} isOpen={isContactOpen} isMinimized={isContactMinimized} isActive={activeWindow === 'contact'} onFocus={() => setActiveWindow('contact')} onClose={() => setIsContactOpen(false)} onMinimize={() => setIsContactMinimized(true)}><div className="w-full h-full overflow-y-auto"><TerminalContact language={language} /></div></MacWindow>}
         
-        {/* Updated About Content */}
+        {/* Updated About Content with Tech Stack */}
         {isAboutOpen && <MacWindow title={language === 'mn' ? "Бидний тухай" : "About Us"} isOpen={isAboutOpen} isMinimized={isAboutMinimized} isActive={activeWindow === 'about'} onFocus={() => setActiveWindow('about')} onClose={() => setIsAboutOpen(false)} onMinimize={() => setIsAboutMinimized(true)}><AboutContent language={language} /></MacWindow>}
         
         {isCareersOpen && <MacWindow title={language === 'mn' ? "Ажлын байр" : "Careers"} isOpen={isCareersOpen} isMinimized={isCareersMinimized} isActive={activeWindow === 'careers'} onFocus={() => setActiveWindow('careers')} onClose={() => setIsCareersOpen(false)} onMinimize={() => setIsCareersMinimized(true)}><div className="w-full h-full overflow-hidden"><CareersContent language={language} /></div></MacWindow>}
